@@ -87,6 +87,18 @@
             <version>1.7.10</version>
         </dependency>
 
+        <!--   LOGGING DEPENDENCIES     -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.19.0</version>
+        </dependency>
+
         <!--   PDT DEPENDENCIES     -->
         <dependency>
             <groupId>org.eclipse.php</groupId>
@@ -101,6 +113,12 @@
             <version>7.2.0</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/src/main/resources/pdt/org.eclipse.php.core.parser-7.2.0.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-reflect</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
