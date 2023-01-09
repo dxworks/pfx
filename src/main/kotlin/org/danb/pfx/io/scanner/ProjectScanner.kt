@@ -1,5 +1,6 @@
 package org.danb.pfx.io.scanner
 
+import org.danb.pfx.utils.filefinder.FileFinder
 import org.danb.pfx.utils.logger
 import java.io.File
 import java.nio.file.Files
@@ -13,10 +14,16 @@ object ProjectScanner {
         if (Files.exists(path)) {
             if (Files.isDirectory(path)) {
                 logger.info("Directory detected: {}", path.toString())
-                File(path.toString()).walkTopDown().forEach {
-                    println(it)
-                }
+                scanDirectory(path)
             }
+        }
+    }
+
+    private fun scanDirectory(path: Path) {
+        logger.info("Scanning path for PHP files")
+        val files = FileFinder.findSourceFiles(path)
+        files.phpFiles.forEach {
+            println(it)
         }
     }
 

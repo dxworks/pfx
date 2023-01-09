@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fae2558-3855-4639-aa70-05303a0b8159" name="Changes" comment="Added initial kotlin class and external libraries">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/io/scanner/ProjectScanner.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/utils/utilFunctions.kt" afterDir="false" />
+    <list default="true" id="6fae2558-3855-4639-aa70-05303a0b8159" name="Changes" comment="Added function to walk through folder starting from a given path">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/utils/filefinder/FileFinder.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/utils/filefinder/FileVisitor.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/utils/filefinder/PHPSourceFiles.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pfx.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pfx.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/pfx.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/pfx.kotlin_module" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/MainKt.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/pfx-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/pfx-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/io/scanner/ProjectScanner.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/io/scanner/ProjectScanner.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +19,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin Object" />
         <option value="Kotlin File" />
+        <option value="Kotlin Object" />
+        <option value="Kotlin Data Class" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -63,7 +60,7 @@
     <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.danb.pfx.MainKt" />
       <module name="pfx" />
-      <option name="PROGRAM_PARAMETERS" value="D:\JavaProjects" />
+      <option name="PROGRAM_PARAMETERS" value="D:\MasterProjects\findmybass" />
       <shortenClasspath name="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -139,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669209068053</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added function to walk through folder starting from a given path">
+      <created>1673252913437</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1673252913437</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -156,7 +160,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial project commit" />
     <MESSAGE value="Added initial kotlin class and external libraries" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added initial kotlin class and external libraries" />
+    <MESSAGE value="Added function to walk through folder starting from a given path" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added function to walk through folder starting from a given path" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
