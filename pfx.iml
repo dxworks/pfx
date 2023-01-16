@@ -47,24 +47,23 @@
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-slf4j-impl:2.19.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.19.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.logging.log4j:log4j-core:2.19.0" level="project" />
-    <orderEntry type="module-library">
-      <library name="Maven: org.eclipse.php:org.eclipse.php.core:7.2.0">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/main/resources/pdt/org.eclipse.php.core-7.2.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="Maven: org.eclipse.php:org.eclipse.php.core.parser:7.2.0">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/main/resources/pdt/org.eclipse.php.core.parser-7.2.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" name="Maven: org.eclipse.php:org.eclipse.php.core:8.0.0.202112011911" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.php:org.eclipse.php.core.parser:8.0.0.202112011911" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.core:runtime:3.10.0-v20140318-2214" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse:osgi:3.10.0-v20140606-1445" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.equinox:common:3.6.200-v20130402-1505" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.core:jobs:3.6.0-v20140424-0053" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.equinox:registry:3.5.400-v20140428-1507" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.equinox:preferences:3.5.200-v20140224-1527" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.core:contenttype:3.4.200-v20140207-1251" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.equinox:app:1.3.200-v20130910-1609" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.dltk:org.eclipse.dltk.core:6.3.0.202006111431" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.dltk:org.eclipse.dltk.annotations:6.3.0.202006111431" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.jface:text:3.3.0-v20070606-0010" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse:text:3.3.0-v20070606-0010" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse:swt:3.3.0-v3346" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse:jface:3.3.0-I20070606-0010" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.core:commands:3.3.0-I20070605-0010" level="project" />
     <orderEntry type="library" name="Maven: org.jetbrains.kotlin:kotlin-reflect:1.8.0" level="project" />
   </component>
 </module>

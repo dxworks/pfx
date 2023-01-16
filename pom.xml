@@ -17,10 +17,29 @@
         <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
     </properties>
 
+    <pluginRepositories>
+        <!-- the plugin is hosted in OpenNTF's Maven repository -->
+        <pluginRepository>
+            <id>artifactory.openntf.org</id>
+            <name>artifactory.openntf.org</name>
+            <url>https://artifactory.openntf.org/openntf</url>
+        </pluginRepository>
+    </pluginRepositories>
+
     <repositories>
         <repository>
             <id>mavenCentral</id>
             <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>org.eclipse.php</id>
+            <layout>p2</layout>
+            <url>https://download.eclipse.org/tools/pdt/updates/8.0/</url>
+        </repository>
+        <repository>
+            <id>org.eclipse.dltk</id>
+            <layout>p2</layout>
+            <url>https://download.eclipse.org/technology/dltk/updates-dev/6.3/</url>
         </repository>
     </repositories>
 
@@ -65,6 +84,12 @@
                     <mainClass>MainKt</mainClass>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.openntf.maven</groupId>
+                <artifactId>p2-layout-resolver</artifactId>
+                <version>1.5.0</version>
+                <extensions>true</extensions>
+            </plugin>
         </plugins>
     </build>
 
@@ -99,21 +124,28 @@
             <version>2.19.0</version>
         </dependency>
 
-        <!--   PDT DEPENDENCIES     -->
+        <!--   PDT DEPENDENCIES    -->
         <dependency>
             <groupId>org.eclipse.php</groupId>
             <artifactId>org.eclipse.php.core</artifactId>
-            <version>7.2.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/resources/pdt/org.eclipse.php.core-7.2.0.jar</systemPath>
+            <version>8.0.0.202112011911</version>
         </dependency>
         <dependency>
-            <groupId>org.eclipse.php</groupId>
-            <artifactId>org.eclipse.php.core.parser</artifactId>
-            <version>7.2.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/resources/pdt/org.eclipse.php.core.parser-7.2.0.jar</systemPath>
+            <groupId>org.eclipse.core</groupId>
+            <artifactId>runtime</artifactId>
+            <version>3.10.0-v20140318-2214</version>
         </dependency>
+        <dependency>
+            <groupId>org.eclipse.dltk</groupId>
+            <artifactId>org.eclipse.dltk.core</artifactId>
+            <version>6.3.0.202006111431</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jface</groupId>
+            <artifactId>text</artifactId>
+            <version>3.3.0-v20070606-0010</version>
+        </dependency>
+
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>

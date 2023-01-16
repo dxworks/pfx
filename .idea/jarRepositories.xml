@@ -12,6 +12,26 @@
       <option name="url" value="https://repo.maven.apache.org/maven2" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="org.eclipse.dltk" />
+      <option name="name" value="org.eclipse.dltk" />
+      <option name="url" value="https://download.eclipse.org/technology/dltk/updates-dev/6.3/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="helios" />
+      <option name="name" value="helios" />
+      <option name="url" value="http://download.eclipse.org/releases/helios" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="pdt" />
+      <option name="name" value="pdt" />
+      <option name="url" value="https://download.eclipse.org/tools/pdt/updates/7.2/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="averbis" />
+      <option name="name" value="averbis" />
+      <option name="url" value="https://maven.averbis.com/m2/" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="central" />
       <option name="name" value="Maven Central repository" />
       <option name="url" value="https://repo1.maven.org/maven2" />
@@ -20,6 +40,16 @@
       <option name="id" value="jboss.community" />
       <option name="name" value="JBoss Community repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="org.eclipse.php" />
+      <option name="name" value="org.eclipse.php" />
+      <option name="url" value="https://download.eclipse.org/tools/pdt/updates/8.0/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="pdt" />
+      <option name="name" value="pdt" />
+      <option name="url" value="https://download.eclipse.org/tools/pdt/updates/latest/" />
     </remote-repository>
   </component>
 </project>

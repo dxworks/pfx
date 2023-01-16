@@ -1,5 +1,6 @@
 package org.danb.pfx.io.scanner
 
+import org.danb.pfx.ast.ASTCreator
 import org.danb.pfx.utils.filefinder.FileFinder
 import org.danb.pfx.utils.logger
 import java.io.File
@@ -9,6 +10,8 @@ import java.nio.file.Path
 object ProjectScanner {
 
     private val logger = logger()
+
+    val astCreator = ASTCreator()
 
     fun scanForProject(path: Path) {
         if (Files.exists(path)) {
@@ -25,6 +28,8 @@ object ProjectScanner {
         files.phpFiles.forEach {
             println(it)
         }
+        astCreator.createAst(files.phpFiles)
+        //TODO Create the AST, specifically the ASTVisitor, extending PHPASTVisitor
     }
 
 }
