@@ -2,6 +2,11 @@
 <project version="4">
   <component name="RemoteRepositoriesConfiguration">
     <remote-repository>
+      <option name="id" value="org.eclipse.php" />
+      <option name="name" value="org.eclipse.php" />
+      <option name="url" value="${eclipse.pdt.p2.repository" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="mavenCentral" />
       <option name="name" value="mavenCentral" />
       <option name="url" value="https://repo1.maven.org/maven2/" />
@@ -20,6 +25,11 @@
       <option name="id" value="helios" />
       <option name="name" value="helios" />
       <option name="url" value="http://download.eclipse.org/releases/helios" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="org.eclipse.dltk" />
+      <option name="name" value="org.eclipse.dltk" />
+      <option name="url" value="${eclipse.dltk.p2.repository" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="pdt" />

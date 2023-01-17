@@ -5,15 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6fae2558-3855-4639-aa70-05303a0b8159" name="Changes" comment="Changed dependencies in pom.xml file to stop relying on local JARs">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTCreator.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/ASTObject.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/Class.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_reflect_1_8_0.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pfx.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pfx.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTCreator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTCreator.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/io/scanner/ProjectScanner.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/io/scanner/ProjectScanner.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/pdt/org.eclipse.php.core-7.2.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/pdt/org.eclipse.php.core.parser-7.2.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pdt/org.eclipse.php.core-7.2.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pdt/org.eclipse.php.core.parser-7.2.0.jar" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,17 +51,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\MasterProjects\Disertation\pfx\src\main\kotlin\org\danb\pfx" />
@@ -69,7 +71,7 @@
     <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.danb.pfx.MainKt" />
       <module name="pfx" />
-      <option name="PROGRAM_PARAMETERS" value="D:\MasterProjects\findmybass\findmybass\src\AppBundle\Entity\" />
+      <option name="PROGRAM_PARAMETERS" value="D:\MasterProjects\findmybass\findmybass\src\AppBundle\Controller\" />
       <shortenClasspath name="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -225,7 +227,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673254523964</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Changed dependencies in pom.xml file to stop relying on local JARs">
+      <created>1673872235024</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1673872235024</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -246,6 +255,32 @@
     <MESSAGE value="Implemented file visitor to get php files from project directory" />
     <MESSAGE value="Changed dependencies in pom.xml file to stop relying on local JARs" />
     <option name="LAST_COMMIT_MESSAGE" value="Changed dependencies in pom.xml file to stop relying on local JARs" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt</url>
+          <line>220</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTCreator.kt</url>
+          <line>27</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTCreator.kt</url>
+          <line>12</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JetRunConfigurationType">
+        <watch expression="((org.eclipse.php.core.ast.nodes.ASTNode.NodeList)((FunctionInvocation)((MethodInvocation)((ReturnStatement)((NodeList)((Block)((FunctionDeclaration)((MethodDeclaration)((NodeList)((Block)((ClassDeclaration)((NodeList)((Block)((NamespaceDeclaration)((NodeList)((Program)program).statements).get(0)).body).statements).get(17)).body).statements).get(0)).function).body).statements).get(1)).expression).method).parameters).get(0)" custom="org.eclipse.php.core.ast.nodes.ClassDeclaration,org.eclipse.php.core.ast.nodes.Program,org.eclipse.php.core.ast.nodes.ASTNode.NodeList,org.eclipse.php.core.ast.nodes.Block,org.eclipse.php.core.ast.nodes.NamespaceDeclaration,org.eclipse.php.core.ast.nodes.FunctionInvocation,org.eclipse.php.core.ast.nodes.FunctionDeclaration,org.eclipse.php.core.ast.nodes.MethodDeclaration,org.eclipse.php.core.ast.nodes.ReturnStatement,org.eclipse.php.core.ast.nodes.MethodInvocation" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

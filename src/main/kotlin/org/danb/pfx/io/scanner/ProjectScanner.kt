@@ -11,7 +11,7 @@ object ProjectScanner {
 
     private val logger = logger()
 
-    val astCreator = ASTCreator()
+    private val astCreator = ASTCreator()
 
     fun scanForProject(path: Path) {
         if (Files.exists(path)) {
@@ -29,7 +29,6 @@ object ProjectScanner {
             println(it)
         }
         astCreator.createAst(files.phpFiles)
-        //TODO Create the AST, specifically the ASTVisitor, extending PHPASTVisitor
     }
 
 }
