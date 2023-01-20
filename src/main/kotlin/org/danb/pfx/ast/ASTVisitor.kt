@@ -1,5 +1,7 @@
 package org.danb.pfx.ast
 
+import org.danb.pfx.model.statements.UseStatementNode
+import org.danb.pfx.model.statements.UseStatementNodePart
 import org.eclipse.php.core.ast.nodes.*
 import org.eclipse.php.core.ast.visitor.AbstractVisitor
 
@@ -14,7 +16,80 @@ class ASTVisitor : AbstractVisitor() {
     }
 
     override fun visit(node: ASTNode?): Boolean {
-        return super.visit(node)
+        when (node) {
+            is ArrayAccess -> this.visit(node)
+            is ArrayCreation -> this.visit(node)
+            is ArrayElement -> this.visit(node)
+            is Assignment -> this.visit(node)
+            is ASTError -> this.visit(node)
+            is BackTickExpression -> this.visit(node)
+            is Block -> this.visit(node)
+            is BreakStatement -> this.visit(node)
+            is CastExpression -> this.visit(node)
+            is CatchClause -> this.visit(node)
+            is StaticConstantAccess -> this.visit(node)
+            is ClassDeclaration -> this.visit(node)
+            is ClassInstanceCreation -> this.visit(node)
+            is ClassName -> this.visit(node)
+            is CloneExpression -> this.visit(node)
+            is Comment -> this.visit(node)
+            is ConditionalExpression -> this.visit(node)
+            is ContinueStatement -> this.visit(node)
+            is DeclareStatement -> this.visit(node)
+            is DoStatement -> this.visit(node)
+            is EchoStatement -> this.visit(node)
+            is EmptyStatement -> this.visit(node)
+            is ExpressionStatement -> this.visit(node)
+            is FieldAccess -> this.visit(node)
+            is FieldsDeclaration -> this.visit(node)
+            is ForEachStatement -> this.visit(node)
+            is FunctionDeclaration -> this.visit(node)
+            is FunctionInvocation -> this.visit(node)
+            is FunctionName -> this.visit(node)
+            is GlobalStatement -> this.visit(node)
+            is Identifier -> this.visit(node)
+            is IfStatement -> this.visit(node)
+            is IgnoreError -> this.visit(node)
+            is Include -> this.visit(node)
+            is InfixExpression -> this.visit(node)
+            is InLineHtml -> this.visit(node)
+            is InstanceOfExpression -> this.visit(node)
+            is InterfaceDeclaration -> this.visit(node)
+            is ListVariable -> this.visit(node)
+            is MethodDeclaration -> this.visit(node)
+            is MethodInvocation -> this.visit(node)
+            is PostfixExpression -> this.visit(node)
+            is PrefixExpression -> this.visit(node)
+            is Program -> this.visit(node)
+            is Quote -> this.visit(node)
+            is Reference -> this.visit(node)
+            is ReflectionVariable -> this.visit(node)
+            is ReturnStatement -> this.visit(node)
+            is Scalar -> this.visit(node)
+            is StaticFieldAccess -> this.visit(node)
+            is StaticMethodInvocation -> this.visit(node)
+            is StaticStatement -> this.visit(node)
+            is SwitchCase -> this.visit(node)
+            is SwitchStatement -> this.visit(node)
+            is ThrowStatement -> this.visit(node)
+            is TryStatement -> this.visit(node)
+            is UnaryOperation -> this.visit(node)
+            is Variable -> this.visit(node)
+            is WhileStatement -> this.visit(node)
+            is ParenthesisExpression -> this.visit(node)
+            is NamespaceDeclaration -> this.visit(node)
+            is UseStatement -> this.visit(node)
+            is GotoLabel -> this.visit(node)
+            is GotoStatement -> this.visit(node)
+            is LambdaFunctionDeclaration -> this.visit(node)
+            is YieldExpression -> this.visit(node)
+            is FinallyClause -> this.visit(node)
+            is EmptyExpression -> this.visit(node)
+            is ArrowFunctionDeclaration -> this.visit(node)
+            is ArraySpreadElement -> this.visit(node)
+            else -> return false
+        }
+        return true
     }
 
     override fun visit(arrayAccess: ArrayAccess?): Boolean {
@@ -220,6 +295,10 @@ class ASTVisitor : AbstractVisitor() {
     override fun visit(namespaceDeclaration: NamespaceDeclaration?): Boolean {
         println("Inside namespace declaration visitor ${namespaceDeclaration?.ast?.toString()}")
         val name = namespaceDeclaration?.name
+        val statements = namespaceDeclaration?.body?.statements()
+        statements?.forEach {
+            this.visit(it)
+        }
         return super.visit(namespaceDeclaration)
     }
 
@@ -313,12 +392,20 @@ class ASTVisitor : AbstractVisitor() {
     }
 
     override fun visit(useStatement: UseStatement?): Boolean {
-        println("Inside useStatement: ${useStatement?.namespace?.name}")
-        return true
-    }
+        println("Inside useStatement: $useStatement")
+        useStatement?.let { statement ->
+            val useStatementNode = UseStatementNode()
+            statement.parts().forEach {
+                val useStatementNodePart = UseStatementNodePart()
+                it.name.segments().forEach { segment ->
+                    useStatementNodePart.nameSegments.add(segment.name)
+                }
+                useStatementNode.statementParts.add(useStatementNodePart)
+            }
+            return true
+        }
 
-    override fun visit(useStatementPart: UseStatementPart?): Boolean {
-        return super.visit(useStatementPart)
+        return false
     }
 
     override fun visit(variable: Variable?): Boolean {
@@ -651,10 +738,6 @@ class ASTVisitor : AbstractVisitor() {
 
     override fun endVisit(useStatement: UseStatement?) {
         super.endVisit(useStatement)
-    }
-
-    override fun endVisit(useStatementPart: UseStatementPart?) {
-        super.endVisit(useStatementPart)
     }
 
     override fun endVisit(variable: Variable?) {
