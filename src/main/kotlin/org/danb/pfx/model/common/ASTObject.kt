@@ -1,4 +1,6 @@
-package org.danb.pfx.model
+package org.danb.pfx.model.common
+
+import org.danb.pfx.model.common.Modifier
 
 abstract class ASTObject(
     var name: String,

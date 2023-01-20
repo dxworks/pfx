@@ -1,7 +1,8 @@
 package org.danb.pfx.ast
 
-import org.danb.pfx.model.statements.UseStatementNode
-import org.danb.pfx.model.statements.UseStatementNodePart
+import org.danb.pfx.model.namespace.NamespaceNode
+import org.danb.pfx.model.statements.imports.UseStatementNode
+import org.danb.pfx.model.statements.imports.UseStatementNodePart
 import org.eclipse.php.core.ast.nodes.*
 import org.eclipse.php.core.ast.visitor.AbstractVisitor
 
@@ -294,12 +295,18 @@ class ASTVisitor : AbstractVisitor() {
 
     override fun visit(namespaceDeclaration: NamespaceDeclaration?): Boolean {
         println("Inside namespace declaration visitor ${namespaceDeclaration?.ast?.toString()}")
-        val name = namespaceDeclaration?.name
-        val statements = namespaceDeclaration?.body?.statements()
-        statements?.forEach {
-            this.visit(it)
+        namespaceDeclaration?.let { namespace ->
+            val namespaceNode = NamespaceNode()
+            namespace.name.segments().forEach {
+                namespaceNode.nameSegments.add(it.name)
+            }
+            val statements = namespaceDeclaration.body?.statements()
+            statements?.forEach {
+                this.visit(it)
+            }
+            return true
         }
-        return super.visit(namespaceDeclaration)
+        return false
     }
 
     override fun visit(namespaceName: NamespaceName?): Boolean {
@@ -319,8 +326,14 @@ class ASTVisitor : AbstractVisitor() {
     }
 
     override fun visit(program: Program?): Boolean {
-        println("Inside program visitor: ${program.toString()}")
-        return true
+        println("Inside program visitor: ${program?.ast.toString()}")
+        program?.let {
+            it.statements().forEach {statement ->
+                this.visit(statement)
+            }
+            return true
+        }
+        return false
     }
 
     override fun visit(quote: Quote?): Boolean {

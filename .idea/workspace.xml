@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fae2558-3855-4639-aa70-05303a0b8159" name="Changes" comment="Created initial visitor object and method to perform smart casting to visit">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/Modifier.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/UseStatementNode.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/UseStatementNodePart.kt" afterDir="false" />
+    <list default="true" id="6fae2558-3855-4639-aa70-05303a0b8159" name="Changes" comment="Created models for the import statement">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/namespace/NamespaceNode.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTCreator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTCreator.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/ASTObject.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/ASTObject.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/Class.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/Class.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/UseStatementNode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/imports/UseStatementNode.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/UseStatementNodePart.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/imports/UseStatementNodePart.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +63,8 @@
       <recent name="D:\MasterProjects\Disertation\pfx\src\main\kotlin\org\danb\pfx" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="org.danb.pfx.model.statements.imports" />
+      <recent name="org.danb.pfx.model.common" />
       <recent name="org.danb.pfx.model.statements" />
     </key>
   </component>
@@ -242,7 +242,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673952991771</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Created models for the import statement">
+      <created>1674201485188</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1674201485188</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -263,30 +270,31 @@
     <MESSAGE value="Implemented file visitor to get php files from project directory" />
     <MESSAGE value="Changed dependencies in pom.xml file to stop relying on local JARs" />
     <MESSAGE value="Created initial visitor object and method to perform smart casting to visit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created initial visitor object and method to perform smart casting to visit" />
+    <MESSAGE value="Created models for the import statement" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created models for the import statement" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt</url>
-          <line>295</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt</url>
-          <line>299</line>
+          <line>304</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt</url>
-          <line>394</line>
-          <option name="timeStamp" value="11" />
+          <line>298</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt</url>
-          <line>404</line>
-          <option name="timeStamp" value="12" />
+          <line>331</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt</url>
+          <line>144</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

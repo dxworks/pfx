@@ -13,13 +13,7 @@ class ASTCreator {
             val parser = ASTParser.newParser(PHPVersion.getLatestVersion(), true, true)
             parser.setSource(FileReader(it))
             val program = parser.createAST(null)
-            parsePhpFile(program)
-        }
-    }
-
-    private fun parsePhpFile(program: Program) {
-        program.statements().forEach {
-            visitor.visit(it)
+            this.visitor.visit(program)
         }
     }
 
