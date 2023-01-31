@@ -1,12 +1,22 @@
 package org.danb.pfx.ast
 
+import org.danb.pfx.model.common.Class
+import org.danb.pfx.model.common.FileModel
+import org.danb.pfx.model.common.Method
 import org.danb.pfx.model.namespace.NamespaceNode
+import org.danb.pfx.model.statements.expressions.ExpressionNode
 import org.danb.pfx.model.statements.imports.UseStatementNode
 import org.danb.pfx.model.statements.imports.UseStatementNodePart
+import org.danb.pfx.utils.getModifierFromInteger
 import org.eclipse.php.core.ast.nodes.*
 import org.eclipse.php.core.ast.visitor.AbstractVisitor
 
 class ASTVisitor : AbstractVisitor() {
+    //todo create context companion object with current file, class, method and variable
+
+    lateinit var currentFile: FileModel
+    lateinit var currentClass: Class
+    lateinit var currentMethod: Method
 
     override fun preVisit(node: ASTNode?) {
         super.preVisit(node)
@@ -142,7 +152,22 @@ class ASTVisitor : AbstractVisitor() {
     }
 
     override fun visit(classDeclaration: ClassDeclaration?): Boolean {
-        return super.visit(classDeclaration)
+        println("Inside class declaration")
+        classDeclaration?.let { clazz ->
+            val classObject = Class()
+            val superClass = clazz.superClass
+//            val binding = superClass.resolveTypeBinding()
+            classObject.name = clazz.name.name
+            if (clazz.parent is Program) {
+                this.currentFile.includedClass = classObject
+            }
+            currentClass = classObject
+            clazz.body.statements().forEach {
+                this.visit(it)
+            }
+            return true
+        }
+        return false
     }
 
     override fun visit(classInstanceCreation: ClassInstanceCreation?): Boolean {
@@ -190,6 +215,10 @@ class ASTVisitor : AbstractVisitor() {
     }
 
     override fun visit(expressionStatement: ExpressionStatement?): Boolean {
+        println("Inside expression statement visitor")
+        expressionStatement?.let {
+            val expressionNode = ExpressionNode()
+        }
         return super.visit(expressionStatement)
     }
 
@@ -286,6 +315,20 @@ class ASTVisitor : AbstractVisitor() {
     }
 
     override fun visit(methodDeclaration: MethodDeclaration?): Boolean {
+        println("Inside method declaration visitor")
+        methodDeclaration?.let { method ->
+            val methodObject = Method()
+            val function = method.function
+            methodObject.modifier = getModifierFromInteger(method.modifier)
+            methodObject.name = function.functionName.name
+            if (method.parent is Block && method.parent.parent is ClassDeclaration) {
+                this.currentClass.methods.add(methodObject)
+            }
+            this.currentMethod = methodObject
+            function.body.statements().forEach {
+                this.visit(it)
+            }
+        }
         return super.visit(methodDeclaration)
     }
 
@@ -300,6 +343,7 @@ class ASTVisitor : AbstractVisitor() {
             namespace.name.segments().forEach {
                 namespaceNode.nameSegments.add(it.name)
             }
+            this.currentFile.namespace = namespaceNode
             val statements = namespaceDeclaration.body?.statements()
             statements?.forEach {
                 this.visit(it)
@@ -414,6 +458,7 @@ class ASTVisitor : AbstractVisitor() {
                     useStatementNodePart.nameSegments.add(segment.name)
                 }
                 useStatementNode.statementParts.add(useStatementNodePart)
+                this.currentFile.useStatements.add(useStatementNode)
             }
             return true
         }

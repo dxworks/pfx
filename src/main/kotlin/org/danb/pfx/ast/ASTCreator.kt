@@ -1,5 +1,6 @@
 package org.danb.pfx.ast
 
+import org.danb.pfx.model.common.FileModel
 import org.eclipse.php.core.PHPVersion
 import org.eclipse.php.core.ast.nodes.*
 import java.io.FileReader
@@ -9,12 +10,17 @@ class ASTCreator {
     private val visitor = ASTVisitor()
 
     fun createAst(phpFiles: List<String>) {
+        val files: MutableList<FileModel> = mutableListOf()
         phpFiles.forEach {
             val parser = ASTParser.newParser(PHPVersion.getLatestVersion(), true, true)
             parser.setSource(FileReader(it))
             val program = parser.createAST(null)
+            visitor.currentFile = FileModel()
+            visitor.currentFile.name = it
             this.visitor.visit(program)
+            files.add(visitor.currentFile)
         }
+        //todo add files to json model
     }
 
 }
