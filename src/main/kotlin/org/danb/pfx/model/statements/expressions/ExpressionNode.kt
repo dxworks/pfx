@@ -1,10 +1,10 @@
 package org.danb.pfx.model.statements.expressions
 
-import org.danb.pfx.model.common.Variable
+import org.danb.pfx.model.expressions.VariableNode
 
 class ExpressionNode(
-    var leftHandSide: Variable,
+    var leftHandSide: VariableNode,
     //todo implement right hand side (can be other variable, lambda function, value, etc)
 ) {
-    constructor() : this(Variable())
+    constructor() : this(VariableNode())
 }

@@ -1,8 +1,9 @@
 package org.danb.pfx.ast
 
-import org.danb.pfx.model.common.Class
-import org.danb.pfx.model.common.FileModel
-import org.danb.pfx.model.common.Method
+import org.danb.pfx.model.common.*
+import org.danb.pfx.model.expressions.ScalarNode
+import org.danb.pfx.model.expressions.ScalarType
+import org.danb.pfx.model.expressions.VariableNode
 import org.danb.pfx.model.namespace.NamespaceNode
 import org.danb.pfx.model.statements.expressions.ExpressionNode
 import org.danb.pfx.model.statements.imports.UseStatementNode
@@ -17,6 +18,7 @@ class ASTVisitor : AbstractVisitor() {
     lateinit var currentFile: FileModel
     lateinit var currentClass: Class
     lateinit var currentMethod: Method
+    lateinit var currentField: Field
 
     override fun preVisit(node: ASTNode?) {
         super.preVisit(node)
@@ -158,7 +160,8 @@ class ASTVisitor : AbstractVisitor() {
             val superClass = clazz.superClass
 //            val binding = superClass.resolveTypeBinding()
             classObject.name = clazz.name.name
-            if (clazz.parent is Program) {
+            if (clazz.parent is Program
+                || (clazz.parent is Block && clazz.parent.parent is NamespaceDeclaration)) {
                 this.currentFile.includedClass = classObject
             }
             currentClass = classObject
@@ -227,7 +230,25 @@ class ASTVisitor : AbstractVisitor() {
     }
 
     override fun visit(fieldsDeclaration: FieldsDeclaration?): Boolean {
-        return super.visit(fieldsDeclaration)
+        println("Inside fields declaration")
+        fieldsDeclaration?.let { fd ->
+
+            fd.fields().forEach { field ->
+                val fieldNode = Field()
+                fieldNode.modifier = getModifierFromInteger(fd.modifier)
+                if (fd.parent is Block && fd.parent.parent is ClassDeclaration) {
+                    this.currentClass.fields.add(fieldNode)
+                }
+                this.currentField = fieldNode
+                this.visit(field.name)
+                if (field.value != null) {
+                    this.visit(field.value)
+                }
+            }
+
+            return true
+        }
+        return false
     }
 
     override fun visit(forEachStatement: ForEachStatement?): Boolean {
@@ -405,7 +426,17 @@ class ASTVisitor : AbstractVisitor() {
     }
 
     override fun visit(scalar: Scalar?): Boolean {
-        return super.visit(scalar)
+        println("Inside scalar visitor")
+        scalar?.let { sc ->
+            val scalarNode = ScalarNode()
+            scalarNode.stringValue = sc.stringValue
+            scalarNode.type = ScalarType from sc.scalarType
+            if (sc.parent is SingleFieldDeclaration) {
+                this.currentField.value = scalarNode
+            }
+            return true
+        }
+        return false
     }
 
     override fun visit(singleFieldDeclaration: SingleFieldDeclaration?): Boolean {
@@ -467,7 +498,18 @@ class ASTVisitor : AbstractVisitor() {
     }
 
     override fun visit(variable: Variable?): Boolean {
-        return super.visit(variable)
+        println("Inside variable visitor")
+        variable?.let {varb ->
+            val variableNode = VariableNode()
+            variableNode.name = (varb.name as Identifier).name
+            variableNode.isDollared = varb.isDollared
+            if (varb.parent is SingleFieldDeclaration) {
+                variableNode.modifier = this.currentField.modifier
+                this.currentField.name = variableNode
+            }
+            return true
+        }
+        return false
     }
 
     override fun visit(whileStatement: WhileStatement?): Boolean {

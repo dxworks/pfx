@@ -1,6 +1,8 @@
-package org.danb.pfx.model.common
+package org.danb.pfx.model.expressions
 
-class Variable(
+import org.danb.pfx.model.common.Modifier
+
+class VariableNode(
     var isDollared: Boolean,
     var name: String,
     var modifier: Modifier?

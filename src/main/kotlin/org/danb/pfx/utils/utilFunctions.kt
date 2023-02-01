@@ -14,6 +14,7 @@ inline fun <reified T> T.logger(): Logger {
 fun getModifierFromInteger(modifierValue: Int): Modifier {
     return when (modifierValue) {
         64 -> Modifier.Public
+        16 -> Modifier.Private
         else -> Modifier.None
     }
 }

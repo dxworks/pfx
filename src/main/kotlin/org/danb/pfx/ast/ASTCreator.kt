@@ -1,6 +1,7 @@
 package org.danb.pfx.ast
 
 import org.danb.pfx.model.common.FileModel
+import org.danb.pfx.model.common.OutputModel
 import org.eclipse.php.core.PHPVersion
 import org.eclipse.php.core.ast.nodes.*
 import java.io.FileReader
@@ -20,7 +21,8 @@ class ASTCreator {
             this.visitor.visit(program)
             files.add(visitor.currentFile)
         }
-        //todo add files to json model
+        val outputModel = OutputModel(files)
+        //todo modify return type of method to return the outputModel
     }
 
 }

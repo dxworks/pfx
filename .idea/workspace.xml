@@ -4,17 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fae2558-3855-4639-aa70-05303a0b8159" name="Changes" comment="Created models for the namespace declaration">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/FileModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/Method.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/Variable.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/expressions/ExpressionNode.kt" afterDir="false" />
+    <list default="true" id="6fae2558-3855-4639-aa70-05303a0b8159" name="Changes" comment="Started to expand existing models and created new ones">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/Field.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/OutputModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/expressions/ScalarNode.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/expressions/ScalarType.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTCreator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTCreator.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/Class.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/Class.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/ASTObject.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/ASTObject.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/Modifier.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/Modifier.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/Class.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/Class.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/Variable.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/expressions/VariableNode.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/expressions/ExpressionNode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/expressions/ExpressionNode.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/utils/utilFunctions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/utils/utilFunctions.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,8 +28,8 @@
         <option value="Kotlin File" />
         <option value="Kotlin Object" />
         <option value="Kotlin Data Class" />
-        <option value="Kotlin Enum" />
         <option value="Kotlin Class" />
+        <option value="Kotlin Enum" />
       </list>
     </option>
   </component>
@@ -68,9 +68,11 @@
       <recent name="D:\MasterProjects\Disertation\pfx\src\main\kotlin\org\danb\pfx" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="org.danb.pfx.model.expressions" />
+      <recent name="org.danb.pfx.model.statements.expressions" />
+      <recent name="org.danb.pfx.model.statements" />
       <recent name="org.danb.pfx.model.common" />
       <recent name="org.danb.pfx.model.statements.imports" />
-      <recent name="org.danb.pfx.model.statements" />
     </key>
   </component>
   <component name="RunManager" selected="Kotlin.MainKt">
@@ -261,7 +263,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674218406434</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Started to expand existing models and created new ones">
+      <created>1675170079160</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1675170079160</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -284,25 +293,21 @@
     <MESSAGE value="Created initial visitor object and method to perform smart casting to visit" />
     <MESSAGE value="Created models for the import statement" />
     <MESSAGE value="Created models for the namespace declaration" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created models for the namespace declaration" />
+    <MESSAGE value="Started to expand existing models and created new ones" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started to expand existing models and created new ones" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt</url>
-          <line>156</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt</url>
-          <line>335</line>
+          <line>356</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt</url>
-          <line>319</line>
-          <option name="timeStamp" value="26" />
+          <url>file://$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTCreator.kt</url>
+          <line>23</line>
+          <option name="timeStamp" value="38" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -316,6 +321,7 @@
         <watch expression="((org.eclipse.php.core.ast.nodes.ASTNode.NodeList)((FunctionInvocation)((MethodInvocation)((ReturnStatement)((NodeList)((Block)((FunctionDeclaration)((MethodDeclaration)((NodeList)((Block)((ClassDeclaration)((NodeList)((Block)((NamespaceDeclaration)((NodeList)((Program)program).statements).get(0)).body).statements).get(17)).body).statements).get(0)).function).body).statements).get(1)).expression).method).parameters).get(0)" custom="org.eclipse.php.core.ast.nodes.ClassDeclaration,org.eclipse.php.core.ast.nodes.Program,org.eclipse.php.core.ast.nodes.ASTNode.NodeList,org.eclipse.php.core.ast.nodes.Block,org.eclipse.php.core.ast.nodes.NamespaceDeclaration,org.eclipse.php.core.ast.nodes.FunctionInvocation,org.eclipse.php.core.ast.nodes.FunctionDeclaration,org.eclipse.php.core.ast.nodes.MethodDeclaration,org.eclipse.php.core.ast.nodes.ReturnStatement,org.eclipse.php.core.ast.nodes.MethodInvocation" />
         <watch expression="((org.eclipse.php.core.ast.nodes.ASTNode.NodeList)((Block)((NamespaceDeclaration)namespaceDeclaration).body).statements).get(0)" custom="org.eclipse.php.core.ast.nodes.ASTNode.NodeList,org.eclipse.php.core.ast.nodes.Block,org.eclipse.php.core.ast.nodes.NamespaceDeclaration" />
         <watch expression="((FunctionDeclaration)((MethodDeclaration)((NodeList)((Block)((ClassDeclaration)classDeclaration).body).statements).get(1)).function).body" custom="org.eclipse.php.core.ast.nodes.ClassDeclaration,org.eclipse.php.core.ast.nodes.ASTNode.NodeList,org.eclipse.php.core.ast.nodes.Block,org.eclipse.php.core.ast.nodes.FunctionDeclaration,org.eclipse.php.core.ast.nodes.MethodDeclaration" />
+        <watch expression="((java.util.ArrayList)files).get(5)" custom="java.util.ArrayList" />
       </configuration>
     </watches-manager>
   </component>
