@@ -1,5 +1,7 @@
 package org.danb.pfx.model.common
 
+import org.danb.pfx.model.methods.Method
+
 class Class(
     name: String,
     modifier: Modifier,

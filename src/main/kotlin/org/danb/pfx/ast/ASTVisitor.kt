@@ -4,8 +4,10 @@ import org.danb.pfx.model.common.*
 import org.danb.pfx.model.expressions.ScalarNode
 import org.danb.pfx.model.expressions.ScalarType
 import org.danb.pfx.model.expressions.VariableNode
+import org.danb.pfx.model.methods.Method
+import org.danb.pfx.model.methods.MethodParameter
 import org.danb.pfx.model.namespace.NamespaceNode
-import org.danb.pfx.model.statements.expressions.ExpressionNode
+import org.danb.pfx.model.statements.ExpressionNode
 import org.danb.pfx.model.statements.imports.UseStatementNode
 import org.danb.pfx.model.statements.imports.UseStatementNodePart
 import org.danb.pfx.utils.getModifierFromInteger
@@ -16,9 +18,9 @@ class ASTVisitor : AbstractVisitor() {
     //todo create context companion object with current file, class, method and variable
 
     lateinit var currentFile: FileModel
-    lateinit var currentClass: Class
-    lateinit var currentMethod: Method
-    lateinit var currentField: Field
+    private lateinit var currentClass: Class
+    private lateinit var currentMethod: Method
+    private lateinit var currentField: Field
 
     override fun preVisit(node: ASTNode?) {
         super.preVisit(node)
@@ -256,7 +258,26 @@ class ASTVisitor : AbstractVisitor() {
     }
 
     override fun visit(formalParameter: FormalParameter?): Boolean {
-        return super.visit(formalParameter)
+        println("Inside method parameter visitor")
+        formalParameter?.let { param ->
+            val methodParameter = MethodParameter()
+            val paramName: Variable = param.parameterName as Variable
+            methodParameter.parameterName = (paramName.name as Identifier).name
+            if (param.parameterType != null) {
+                methodParameter.parameterType = getParameterTypeString(param.parameterType)
+            }
+            this.currentMethod.parameters.add(methodParameter)
+            return true
+        }
+        return false
+    }
+
+    private fun getParameterTypeString(parameterType: ASTNode): String {
+        return when(parameterType) {
+            is NamespaceName -> parameterType.name
+            is Identifier -> parameterType.name
+            else -> ""
+        }
     }
 
     override fun visit(forStatement: ForStatement?): Boolean {
@@ -346,6 +367,10 @@ class ASTVisitor : AbstractVisitor() {
                 this.currentClass.methods.add(methodObject)
             }
             this.currentMethod = methodObject
+
+            function.formalParameters().forEach {
+                this.visit(it)
+            }
             function.body.statements().forEach {
                 this.visit(it)
             }

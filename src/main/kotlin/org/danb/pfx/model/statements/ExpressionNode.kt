@@ -1,4 +1,4 @@
-package org.danb.pfx.model.statements.expressions
+package org.danb.pfx.model.statements
 
 import org.danb.pfx.model.expressions.VariableNode
 

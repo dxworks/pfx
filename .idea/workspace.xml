@@ -4,18 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fae2558-3855-4639-aa70-05303a0b8159" name="Changes" comment="Started to expand existing models and created new ones">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/Field.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/OutputModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/expressions/ScalarNode.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/expressions/ScalarType.kt" afterDir="false" />
+    <list default="true" id="6fae2558-3855-4639-aa70-05303a0b8159" name="Changes" comment="Expanded AST model to include fields with expressions and values">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/AbstractReturnType.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/methods/MethodParameter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/ReturnStatementNode.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pfx.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pfx.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTCreator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTCreator.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/Class.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/Class.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/Variable.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/expressions/VariableNode.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/expressions/ExpressionNode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/expressions/ExpressionNode.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/utils/utilFunctions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/utils/utilFunctions.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/FileModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/FileModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/Method.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/methods/Method.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/expressions/ScalarNode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/expressions/ScalarNode.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/expressions/ExpressionNode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/ExpressionNode.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +30,9 @@
         <option value="Kotlin File" />
         <option value="Kotlin Object" />
         <option value="Kotlin Data Class" />
-        <option value="Kotlin Class" />
         <option value="Kotlin Enum" />
+        <option value="Kotlin Interface" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -60,7 +63,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -68,11 +71,11 @@
       <recent name="D:\MasterProjects\Disertation\pfx\src\main\kotlin\org\danb\pfx" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="org.danb.pfx.model.statements" />
+      <recent name="org.danb.pfx.model.methods" />
       <recent name="org.danb.pfx.model.expressions" />
       <recent name="org.danb.pfx.model.statements.expressions" />
-      <recent name="org.danb.pfx.model.statements" />
       <recent name="org.danb.pfx.model.common" />
-      <recent name="org.danb.pfx.model.statements.imports" />
     </key>
   </component>
   <component name="RunManager" selected="Kotlin.MainKt">
@@ -270,7 +273,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675170079160</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Expanded AST model to include fields with expressions and values">
+      <created>1675259699465</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1675259699465</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -294,21 +304,52 @@
     <MESSAGE value="Created models for the import statement" />
     <MESSAGE value="Created models for the namespace declaration" />
     <MESSAGE value="Started to expand existing models and created new ones" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started to expand existing models and created new ones" />
+    <MESSAGE value="Expanded AST model to include fields with expressions and values" />
+    <option name="LAST_COMMIT_MESSAGE" value="Expanded AST model to include fields with expressions and values" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTCreator.kt</url>
+          <line>33</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt</url>
-          <line>356</line>
-          <option name="timeStamp" value="24" />
+          <line>369</line>
+          <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTCreator.kt</url>
-          <line>23</line>
-          <option name="timeStamp" value="38" />
+          <line>27</line>
+          <option name="timeStamp" value="65" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/eclipse/dltk/org.eclipse.dltk.core/6.3.0.202006111431/org.eclipse.dltk.core-6.3.0.202006111431.jar!/org/eclipse/dltk/core/SourceParserUtil.class</url>
+          <line>47</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <condition expression="c == null" language="JAVA" />
+          <url>jar://C:/Program Files/Java/jdk-11.0.11/lib/src.zip!/java.base/jdk/internal/loader/BuiltinClassLoader.java</url>
+          <line>579</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/eclipse/dltk/org.eclipse.dltk.core/6.3.0.202006111431/org.eclipse.dltk.core-6.3.0.202006111431.jar!/org/eclipse/dltk/internal/core/ModelElement.class</url>
+          <line>243</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/eclipse/dltk/org.eclipse.dltk.core/6.3.0.202006111431/org.eclipse.dltk.core-6.3.0.202006111431.jar!/org/eclipse/dltk/core/PriorityClassDLTKExtensionManager.class</url>
+          <line>20</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <breakpoint type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="63" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
