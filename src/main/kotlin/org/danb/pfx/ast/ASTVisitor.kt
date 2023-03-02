@@ -1,5 +1,7 @@
 package org.danb.pfx.ast
 
+import org.danb.pfx.model.arrays.ArrayCreationNode
+import org.danb.pfx.model.arrays.ArrayElementNode
 import org.danb.pfx.model.common.*
 import org.danb.pfx.model.expressions.ScalarNode
 import org.danb.pfx.model.expressions.ScalarType
@@ -7,7 +9,8 @@ import org.danb.pfx.model.expressions.VariableNode
 import org.danb.pfx.model.methods.Method
 import org.danb.pfx.model.methods.MethodParameter
 import org.danb.pfx.model.namespace.NamespaceNode
-import org.danb.pfx.model.statements.ExpressionNode
+import org.danb.pfx.model.statements.expressions.AssignmentNode
+import org.danb.pfx.model.statements.expressions.ExpressionStatementNode
 import org.danb.pfx.model.statements.imports.UseStatementNode
 import org.danb.pfx.model.statements.imports.UseStatementNodePart
 import org.danb.pfx.utils.getModifierFromInteger
@@ -21,6 +24,8 @@ class ASTVisitor : AbstractVisitor() {
     private lateinit var currentClass: Class
     private lateinit var currentMethod: Method
     private lateinit var currentField: Field
+    private lateinit var currentExpression: ExpressionStatementNode
+    private lateinit var currentArrayCreation: ArrayCreationNode
 
     override fun preVisit(node: ASTNode?) {
         super.preVisit(node)
@@ -112,11 +117,29 @@ class ASTVisitor : AbstractVisitor() {
     }
 
     override fun visit(arrayCreation: ArrayCreation?): Boolean {
-        return super.visit(arrayCreation)
+        println("Inside array creation visitor")
+        arrayCreation?.let {
+            val arrayCreationNode = ArrayCreationNode()
+            arrayCreationNode.hasArrayKey = it.isHasArrayKey
+            this.currentArrayCreation = arrayCreationNode
+            it.elements().forEach { element -> this.visit(element) }
+            if (it.parent is Assignment) {
+                (this.currentExpression as AssignmentNode).rightHandSide = this.currentArrayCreation
+            }
+            return true
+        }
+        return false
     }
 
     override fun visit(arrayElement: ArrayElement?): Boolean {
-        return super.visit(arrayElement)
+        println("Inside array element visitor")
+        arrayElement?.let {
+            val arrayElementNode = ArrayElementNode()
+
+            this.currentArrayCreation.arrayElements.add(arrayElementNode)
+            return true
+        }
+        return false
     }
 
     override fun visit(arraySpreadElement: ArraySpreadElement?): Boolean {
@@ -124,7 +147,20 @@ class ASTVisitor : AbstractVisitor() {
     }
 
     override fun visit(assignment: Assignment?): Boolean {
-        return super.visit(assignment)
+        println("Inside assignment visitor")
+        assignment?.let {
+            val assignmentNode = AssignmentNode()
+            this.currentExpression = assignmentNode
+            if (it.leftHandSide != null) {
+                this.visit(it.leftHandSide)
+            }
+            if (it.rightHandSide != null) {
+                this.visit(it.rightHandSide)
+            }
+
+            return true
+        }
+        return false
     }
 
     override fun visit(astError: ASTError?): Boolean {
@@ -159,8 +195,6 @@ class ASTVisitor : AbstractVisitor() {
         println("Inside class declaration")
         classDeclaration?.let { clazz ->
             val classObject = Class()
-            val superClass = clazz.superClass
-//            val binding = superClass.resolveTypeBinding()
             classObject.name = clazz.name.name
             if (clazz.parent is Program
                 || (clazz.parent is Block && clazz.parent.parent is NamespaceDeclaration)) {
@@ -221,10 +255,16 @@ class ASTVisitor : AbstractVisitor() {
 
     override fun visit(expressionStatement: ExpressionStatement?): Boolean {
         println("Inside expression statement visitor")
-        expressionStatement?.let {
-            val expressionNode = ExpressionNode()
+        expressionStatement?.let {expr ->
+            when (expr.expression) {
+                is Assignment -> this.visit(expr.expression)
+                is MethodInvocation -> this.visit(expressionStatement.expression)
+                else -> return true
+            }
+            this.currentMethod.statements.add(currentExpression)
+            return true
         }
-        return super.visit(expressionStatement)
+        return false
     }
 
     override fun visit(fieldAccess: FieldAccess?): Boolean {
@@ -260,12 +300,16 @@ class ASTVisitor : AbstractVisitor() {
     override fun visit(formalParameter: FormalParameter?): Boolean {
         println("Inside method parameter visitor")
         formalParameter?.let { param ->
+            //todo use method binding to determine methods imported from external packages
             val methodParameter = MethodParameter()
             val paramName: Variable = param.parameterName as Variable
             methodParameter.parameterName = (paramName.name as Identifier).name
+            methodParameter.isMandatory = param.isMandatory
+            methodParameter.isVariadic = param.isVariadic
             if (param.parameterType != null) {
                 methodParameter.parameterType = getParameterTypeString(param.parameterType)
             }
+            methodParameter.isDollared = paramName.isDollared
             this.currentMethod.parameters.add(methodParameter)
             return true
         }
@@ -458,6 +502,8 @@ class ASTVisitor : AbstractVisitor() {
             scalarNode.type = ScalarType from sc.scalarType
             if (sc.parent is SingleFieldDeclaration) {
                 this.currentField.value = scalarNode
+            } else if (sc.parent is Assignment) {
+                (this.currentExpression as AssignmentNode).rightHandSide = scalarNode
             }
             return true
         }
@@ -531,6 +577,8 @@ class ASTVisitor : AbstractVisitor() {
             if (varb.parent is SingleFieldDeclaration) {
                 variableNode.modifier = this.currentField.modifier
                 this.currentField.name = variableNode
+            } else if (varb.parent is Assignment) {
+                (this.currentExpression as AssignmentNode).leftHandSide = variableNode
             }
             return true
         }

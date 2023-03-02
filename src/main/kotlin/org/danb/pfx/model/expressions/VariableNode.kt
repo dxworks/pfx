@@ -7,5 +7,5 @@ class VariableNode(
     var name: String,
     var modifier: Modifier?
 ) {
-    constructor() : this(false, "", null)
+    constructor() : this(false, "", Modifier.None)
 }
