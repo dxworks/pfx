@@ -4,20 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fae2558-3855-4639-aa70-05303a0b8159" name="Changes" comment="Expanded AST model to start including method parameters">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/arrays/ArrayCreationNode.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/arrays/ArrayElementNode.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/AbstractStatementNode.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/expressions/AssignmentNode.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/expressions/ExpressionStatementNode.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/expressions/MethodInvocationNode.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/expressions/RightHandSideNode.kt" afterDir="false" />
+    <list default="true" id="6fae2558-3855-4639-aa70-05303a0b8159" name="Changes" comment="Initial implementation of AST expression statement model">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/VariableBaseNode.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/VariableType.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTCreator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTCreator.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/expressions/VariableNode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/expressions/VariableNode.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/arrays/ArrayCreationNode.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/arrays/ArrayElementNode.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/Field.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/Field.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/expressions/ScalarNode.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/expressions/ScalarType.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/expressions/VariableNode.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/methods/Method.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/methods/Method.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/methods/MethodParameter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/methods/MethodParameter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/ExpressionNode.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/AbstractStatementNode.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/ReturnStatementNode.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/expressions/AssignmentNode.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/expressions/ExpressionStatementNode.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/expressions/MethodInvocationNode.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/expressions/RightHandSideNode.kt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,18 +76,27 @@
       <recent name="D:\MasterProjects\Disertation\pfx\src\main\kotlin\org\danb\pfx" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="org.danb.pfx.model.common" />
       <recent name="org.danb.pfx.model.statements.expressions" />
       <recent name="org.danb.pfx.model.statements" />
       <recent name="org.danb.pfx.model.methods" />
       <recent name="org.danb.pfx.model.expressions" />
-      <recent name="org.danb.pfx.model.common" />
     </key>
   </component>
   <component name="RunManager" selected="Kotlin.MainKt">
-    <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+    <configuration name="MainKt" type="JetRunConfigurationType">
       <option name="MAIN_CLASS_NAME" value="org.danb.pfx.MainKt" />
       <module name="pfx" />
       <option name="PROGRAM_PARAMETERS" value="D:\MasterProjects\findmybass\findmybass\" />
+      <shortenClasspath name="NONE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test PHP Examples" type="JetRunConfigurationType">
+      <option name="MAIN_CLASS_NAME" value="org.danb.pfx.MainKt" />
+      <module name="pfx" />
+      <option name="PROGRAM_PARAMETERS" value="D:\MasterProjects\DissertationPHPExamples" />
       <shortenClasspath name="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -190,16 +204,12 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Kotlin.Test PHP Examples" />
       <item itemvalue="Kotlin.MainKt" />
       <item itemvalue="Maven.pfx [install:install-file] (1)" />
       <item itemvalue="Maven.pfx install php core parser" />
       <item itemvalue="Maven.pfx [install:install-file]" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Kotlin.MainKt" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -287,7 +297,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677750327885</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Initial implementation of AST expression statement model">
+      <created>1677767582374</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1677767582374</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -313,30 +330,16 @@
     <MESSAGE value="Started to expand existing models and created new ones" />
     <MESSAGE value="Expanded AST model to include fields with expressions and values" />
     <MESSAGE value="Expanded AST model to start including method parameters" />
-    <option name="LAST_COMMIT_MESSAGE" value="Expanded AST model to start including method parameters" />
+    <MESSAGE value="Initial implementation of AST expression statement model" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial implementation of AST expression statement model" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTCreator.kt</url>
-          <line>29</line>
+          <line>24</line>
           <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt</url>
-          <line>502</line>
-          <option name="timeStamp" value="86" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt</url>
-          <line>120</line>
-          <option name="timeStamp" value="87" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt</url>
-          <line>133</line>
-          <option name="timeStamp" value="88" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>jar://$MAVEN_REPOSITORY$/org/eclipse/dltk/org.eclipse.dltk.core/6.3.0.202006111431/org.eclipse.dltk.core-6.3.0.202006111431.jar!/org/eclipse/dltk/core/SourceParserUtil.class</url>
@@ -379,6 +382,11 @@
         <watch expression="((java.util.ArrayList)((Class)((FileModel)((java.util.ArrayList)files).get(3)).includedClass).methods).get(1)" custom="org.danb.pfx.model.common.FileModel,org.danb.pfx.model.common.Class,java.util.ArrayList" />
         <watch expression="((java.util.ArrayList)files).get(2)" custom="java.util.ArrayList" />
         <watch expression="((java.util.ArrayList)files).get(2)" custom="java.util.ArrayList" />
+        <watch expression="((Method)((java.util.ArrayList)((Class)((FileModel)((java.util.ArrayList)files).get(0)).includedClass).methods).get(0)).statements" custom="org.danb.pfx.model.common.FileModel,org.danb.pfx.model.common.Class,org.danb.pfx.model.methods.Method,java.util.ArrayList" />
+        <watch expression="((java.util.ArrayList)((Class)((FileModel)((java.util.ArrayList)files).get(0)).includedClass).methods).get(0)" custom="org.danb.pfx.model.common.FileModel,org.danb.pfx.model.common.Class,java.util.ArrayList" />
+        <watch expression="((ArrayElementNode)((java.util.ArrayList)((ArrayCreationNode)((ArrayElementNode)((java.util.ArrayList)((ArrayCreationNode)((AssignmentNode)((java.util.ArrayList)((Method)((java.util.ArrayList)((Class)((FileModel)((java.util.ArrayList)files).get(0)).includedClass).methods).get(0)).statements).get(3)).rightHandSide).arrayElements).get(1)).value).arrayElements).get(1)).key" custom="org.danb.pfx.model.arrays.ArrayCreationNode,org.danb.pfx.model.statements.expressions.AssignmentNode,org.danb.pfx.model.common.FileModel,org.danb.pfx.model.common.Class,org.danb.pfx.model.methods.Method,org.danb.pfx.model.arrays.ArrayElementNode,java.util.ArrayList" />
+        <watch expression="((ArrayElementNode)((java.util.ArrayList)((ArrayCreationNode)((ArrayElementNode)((java.util.ArrayList)((ArrayCreationNode)((AssignmentNode)((java.util.ArrayList)((Method)((java.util.ArrayList)((Class)((FileModel)((java.util.ArrayList)files).get(0)).includedClass).methods).get(0)).statements).get(3)).rightHandSide).arrayElements).get(1)).value).arrayElements).get(1)).key" custom="org.danb.pfx.model.arrays.ArrayCreationNode,org.danb.pfx.model.statements.expressions.AssignmentNode,org.danb.pfx.model.common.FileModel,org.danb.pfx.model.common.Class,org.danb.pfx.model.methods.Method,org.danb.pfx.model.arrays.ArrayElementNode,java.util.ArrayList" />
+        <watch expression="((ArrayElementNode)((java.util.ArrayList)((ArrayCreationNode)((ArrayElementNode)((java.util.ArrayList)((ArrayCreationNode)((ArrayElementNode)((java.util.ArrayList)((ArrayCreationNode)((ArrayElementNode)((java.util.ArrayList)((ArrayCreationNode)((ArrayElementNode)((java.util.ArrayList)((ArrayCreationNode)((ArrayElementNode)((java.util.ArrayList)((ArrayCreationNode)((ArrayElementNode)((java.util.ArrayList)((ArrayCreationNode)((ArrayElementNode)((java.util.ArrayList)((ArrayCreationNode)((ArrayElementNode)((java.util.ArrayList)((ArrayCreationNode)((ArrayElementNode)((java.util.ArrayList)((ArrayCreationNode)((ArrayElementNode)((java.util.ArrayList)((ArrayCreationNode)((ArrayElementNode)((java.util.ArrayList)((ArrayCreationNode)((AssignmentNode)((java.util.ArrayList)((Method)((java.util.ArrayList)((Class)((FileModel)((java.util.ArrayList)files).get(0)).includedClass).methods).get(0)).statements).get(3)).rightHandSide).arrayElements).get(1)).value).arrayElements).get(1)).value).arrayElements).get(1)).value).arrayElements).get(1)).value).arrayElements).get(1)).value).arrayElements).get(1)).value).arrayElements).get(1)).value).arrayElements).get(1)).value).arrayElements).get(1)).value).arrayElements).get(1)).value).arrayElements).get(1)).value).arrayElements).get(1)).value" custom="org.danb.pfx.model.arrays.ArrayCreationNode,org.danb.pfx.model.statements.expressions.AssignmentNode,org.danb.pfx.model.common.FileModel,org.danb.pfx.model.common.Class,org.danb.pfx.model.methods.Method,org.danb.pfx.model.arrays.ArrayElementNode,java.util.ArrayList" />
       </configuration>
     </watches-manager>
   </component>

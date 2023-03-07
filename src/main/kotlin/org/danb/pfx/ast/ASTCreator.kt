@@ -2,13 +2,8 @@ package org.danb.pfx.ast
 
 import org.danb.pfx.model.common.FileModel
 import org.danb.pfx.model.common.OutputModel
-import org.eclipse.core.runtime.Path
-import org.eclipse.dltk.internal.core.BuiltinScriptFolder
-import org.eclipse.dltk.internal.core.BuiltinSourceModule
-import org.eclipse.dltk.internal.core.ModelElement
 import org.eclipse.php.core.PHPVersion
 import org.eclipse.php.core.ast.nodes.*
-import org.eclipse.php.internal.core.typeinference.FakeMethod
 import java.io.FileReader
 
 class ASTCreator {

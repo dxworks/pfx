@@ -1,16 +1,10 @@
 package org.danb.pfx.ast
 
-import org.danb.pfx.model.arrays.ArrayCreationNode
-import org.danb.pfx.model.arrays.ArrayElementNode
 import org.danb.pfx.model.common.*
-import org.danb.pfx.model.expressions.ScalarNode
-import org.danb.pfx.model.expressions.ScalarType
-import org.danb.pfx.model.expressions.VariableNode
+import org.danb.pfx.model.common.VariableType
 import org.danb.pfx.model.methods.Method
 import org.danb.pfx.model.methods.MethodParameter
 import org.danb.pfx.model.namespace.NamespaceNode
-import org.danb.pfx.model.statements.expressions.AssignmentNode
-import org.danb.pfx.model.statements.expressions.ExpressionStatementNode
 import org.danb.pfx.model.statements.imports.UseStatementNode
 import org.danb.pfx.model.statements.imports.UseStatementNodePart
 import org.danb.pfx.utils.getModifierFromInteger
@@ -24,8 +18,7 @@ class ASTVisitor : AbstractVisitor() {
     private lateinit var currentClass: Class
     private lateinit var currentMethod: Method
     private lateinit var currentField: Field
-    private lateinit var currentExpression: ExpressionStatementNode
-    private lateinit var currentArrayCreation: ArrayCreationNode
+    private lateinit var currentVariable: VariableBaseNode
 
     override fun preVisit(node: ASTNode?) {
         super.preVisit(node)
@@ -39,7 +32,6 @@ class ASTVisitor : AbstractVisitor() {
         when (node) {
             is ArrayAccess -> this.visit(node)
             is ArrayCreation -> this.visit(node)
-            is ArrayElement -> this.visit(node)
             is Assignment -> this.visit(node)
             is ASTError -> this.visit(node)
             is BackTickExpression -> this.visit(node)
@@ -119,24 +111,13 @@ class ASTVisitor : AbstractVisitor() {
     override fun visit(arrayCreation: ArrayCreation?): Boolean {
         println("Inside array creation visitor")
         arrayCreation?.let {
-            val arrayCreationNode = ArrayCreationNode()
-            arrayCreationNode.hasArrayKey = it.isHasArrayKey
-            this.currentArrayCreation = arrayCreationNode
-            it.elements().forEach { element -> this.visit(element) }
-            if (it.parent is Assignment) {
-                (this.currentExpression as AssignmentNode).rightHandSide = this.currentArrayCreation
+            when (it.parent) {
+                is Assignment -> {
+                    this.currentVariable.type = VariableType.Array
+                    return true
+                }
+                else -> {}
             }
-            return true
-        }
-        return false
-    }
-
-    override fun visit(arrayElement: ArrayElement?): Boolean {
-        println("Inside array element visitor")
-        arrayElement?.let {
-            val arrayElementNode = ArrayElementNode()
-
-            this.currentArrayCreation.arrayElements.add(arrayElementNode)
             return true
         }
         return false
@@ -149,8 +130,8 @@ class ASTVisitor : AbstractVisitor() {
     override fun visit(assignment: Assignment?): Boolean {
         println("Inside assignment visitor")
         assignment?.let {
-            val assignmentNode = AssignmentNode()
-            this.currentExpression = assignmentNode
+            val variable = VariableBaseNode()
+            this.currentVariable = variable
             if (it.leftHandSide != null) {
                 this.visit(it.leftHandSide)
             }
@@ -158,6 +139,7 @@ class ASTVisitor : AbstractVisitor() {
                 this.visit(it.rightHandSide)
             }
 
+            this.currentMethod.variables.add(this.currentVariable)
             return true
         }
         return false
@@ -261,7 +243,6 @@ class ASTVisitor : AbstractVisitor() {
                 is MethodInvocation -> this.visit(expressionStatement.expression)
                 else -> return true
             }
-            this.currentMethod.statements.add(currentExpression)
             return true
         }
         return false
@@ -483,7 +464,11 @@ class ASTVisitor : AbstractVisitor() {
     }
 
     override fun visit(returnStatement: ReturnStatement?): Boolean {
-        return super.visit(returnStatement)
+        println("Inside return statement visitor")
+        returnStatement?.let {
+            return true
+        }
+        return false
     }
 
     override fun visit(returnType: ReturnType?): Boolean {
@@ -497,13 +482,15 @@ class ASTVisitor : AbstractVisitor() {
     override fun visit(scalar: Scalar?): Boolean {
         println("Inside scalar visitor")
         scalar?.let { sc ->
-            val scalarNode = ScalarNode()
-            scalarNode.stringValue = sc.stringValue
-            scalarNode.type = ScalarType from sc.scalarType
-            if (sc.parent is SingleFieldDeclaration) {
-                this.currentField.value = scalarNode
-            } else if (sc.parent is Assignment) {
-                (this.currentExpression as AssignmentNode).rightHandSide = scalarNode
+            when (sc.parent) {
+                is SingleFieldDeclaration -> {
+                    this.currentField.type = VariableType from sc.scalarType
+                    this.currentField.value = sc.stringValue
+                }
+                is Assignment -> {
+                    this.currentVariable.type = VariableType from sc.scalarType
+                }
+                else -> {}
             }
             return true
         }
@@ -571,14 +558,16 @@ class ASTVisitor : AbstractVisitor() {
     override fun visit(variable: Variable?): Boolean {
         println("Inside variable visitor")
         variable?.let {varb ->
-            val variableNode = VariableNode()
-            variableNode.name = (varb.name as Identifier).name
-            variableNode.isDollared = varb.isDollared
-            if (varb.parent is SingleFieldDeclaration) {
-                variableNode.modifier = this.currentField.modifier
-                this.currentField.name = variableNode
-            } else if (varb.parent is Assignment) {
-                (this.currentExpression as AssignmentNode).leftHandSide = variableNode
+            when (varb.parent) {
+                is SingleFieldDeclaration -> {
+                    this.currentField.name = (varb.name as Identifier).name
+                    this.currentField.isDollared = varb.isDollared
+                }
+                is Assignment -> {
+                    this.currentVariable.name = (varb.name as Identifier).name
+                    this.currentVariable.isDollared = varb.isDollared
+                }
+                else -> {}
             }
             return true
         }
