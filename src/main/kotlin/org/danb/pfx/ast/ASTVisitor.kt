@@ -139,7 +139,9 @@ class ASTVisitor : AbstractVisitor() {
                 this.visit(it.rightHandSide)
             }
 
-            this.currentMethod.variables.add(this.currentVariable)
+            if (!this.currentMethod.variables.containsKey(variable.name) && variable.name.isNotEmpty())  {
+                this.currentMethod.variables[variable.name] = this.currentVariable
+            }
             return true
         }
         return false
@@ -154,7 +156,11 @@ class ASTVisitor : AbstractVisitor() {
     }
 
     override fun visit(block: Block?): Boolean {
-        return super.visit(block)
+        block?.let {
+            it.statements().forEach { statement -> this.visit(statement) }
+            return true
+        }
+        return false
     }
 
     override fun visit(breakStatement: BreakStatement?): Boolean {
@@ -275,7 +281,12 @@ class ASTVisitor : AbstractVisitor() {
     }
 
     override fun visit(forEachStatement: ForEachStatement?): Boolean {
-        return super.visit(forEachStatement)
+        println("Inside for statement visitor")
+        forEachStatement?.let {
+            this.visit(it.statement)
+            return true
+        }
+        return false
     }
 
     override fun visit(formalParameter: FormalParameter?): Boolean {
@@ -338,7 +349,17 @@ class ASTVisitor : AbstractVisitor() {
     }
 
     override fun visit(ifStatement: IfStatement?): Boolean {
-        return super.visit(ifStatement)
+        println("Inside if statement visitor")
+        ifStatement?.let {
+            if (it.trueStatement != null) {
+                this.visit(it.trueStatement)
+            }
+            if (it.falseStatement != null) {
+                this.visit(it.falseStatement)
+            }
+            return true
+        }
+        return false
     }
 
     override fun visit(ignoreError: IgnoreError?): Boolean {
@@ -399,8 +420,9 @@ class ASTVisitor : AbstractVisitor() {
             function.body.statements().forEach {
                 this.visit(it)
             }
+            return true
         }
-        return super.visit(methodDeclaration)
+        return false
     }
 
     override fun visit(methodInvocation: MethodInvocation?): Boolean {

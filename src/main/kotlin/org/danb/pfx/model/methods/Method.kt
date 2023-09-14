@@ -10,7 +10,7 @@ class Method(
     var parameters: MutableList<MethodParameter>,
     //todo refactor statement into declared variables and called methods
     //todo add return type if exists
-    var variables: MutableList<VariableBaseNode>
+    var variables: MutableMap<String, VariableBaseNode>
 ) : ASTObject(name, modifier) {
-    constructor() : this("", Modifier.None, mutableListOf(), mutableListOf())
+    constructor() : this("", Modifier.None, mutableListOf(), mutableMapOf())
 }

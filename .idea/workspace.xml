@@ -4,25 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fae2558-3855-4639-aa70-05303a0b8159" name="Changes" comment="Initial implementation of AST expression statement model">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/VariableBaseNode.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/VariableType.kt" afterDir="false" />
+    <list default="true" id="6fae2558-3855-4639-aa70-05303a0b8159" name="Changes" comment="Refactored AST statement model and provided early model of variables declared in methods">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTCreator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTCreator.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/arrays/ArrayCreationNode.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/arrays/ArrayElementNode.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/Field.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/common/Field.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/expressions/ScalarNode.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/expressions/ScalarType.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/expressions/VariableNode.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/methods/Method.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/methods/Method.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/AbstractStatementNode.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/ReturnStatementNode.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/expressions/AssignmentNode.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/expressions/ExpressionStatementNode.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/expressions/MethodInvocationNode.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/model/statements/expressions/RightHandSideNode.kt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -304,7 +289,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677767582374</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Refactored AST statement model and provided early model of variables declared in methods">
+      <created>1678202363586</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1678202363586</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -331,7 +323,8 @@
     <MESSAGE value="Expanded AST model to include fields with expressions and values" />
     <MESSAGE value="Expanded AST model to start including method parameters" />
     <MESSAGE value="Initial implementation of AST expression statement model" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial implementation of AST expression statement model" />
+    <MESSAGE value="Refactored AST statement model and provided early model of variables declared in methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored AST statement model and provided early model of variables declared in methods" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -340,6 +333,11 @@
           <url>file://$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTCreator.kt</url>
           <line>24</line>
           <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/org/danb/pfx/ast/ASTVisitor.kt</url>
+          <line>683</line>
+          <option name="timeStamp" value="70" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>jar://$MAVEN_REPOSITORY$/org/eclipse/dltk/org.eclipse.dltk.core/6.3.0.202006111431/org.eclipse.dltk.core-6.3.0.202006111431.jar!/org/eclipse/dltk/core/SourceParserUtil.class</url>
@@ -370,6 +368,7 @@
     </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
+        <PinnedItemInfo parentTag="org.eclipse.php.core.ast.nodes.ArrayAccess" memberName="ast" />
         <PinnedItemInfo parentTag="org.eclipse.php.core.ast.nodes.ClassDeclaration" memberName="interfaces" />
       </pinned-members>
     </pin-to-top-manager>
